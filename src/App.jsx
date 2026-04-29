@@ -18,7 +18,16 @@ import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
+
+// Admin Components
+import AdminRoute from './components/AdminRoute';
+import AdminLogin from './pages/admin/AdminLogin';
+import { AdminLayout, DashboardStats } from './pages/admin/AdminDashboard';
+import AddProduct from './pages/admin/AddProduct';
+import Orders from './pages/admin/Orders';
+import { Outlet } from 'react-router-dom';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -29,11 +38,11 @@ const ScrollToTop = () => {
   return null;
 };
 
-const Layout = ({ children }) => (
+const UserLayout = () => (
   <div className="min-h-screen flex flex-col">
     <Navbar />
     <main className="flex-grow pt-24">
-      {children}
+      <Outlet />
     </main>
     <Footer />
     <WhatsAppButton />
@@ -61,22 +70,32 @@ function App() {
             },
           },
         }} />
-        <Layout>
-          <Routes>
+        <Routes>
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+            <Route path="dashboard" element={<DashboardStats />} />
+            <Route path="add-product" element={<AddProduct />} />
+            <Route path="orders" element={<Orders />} />
+          </Route>
+
+          {/* User Routes */}
+          <Route element={<UserLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/products" element={<ProductsPage />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/checkout" element={
               <ProtectedRoute>
                 <Checkout />
               </ProtectedRoute>
             } />
             <Route path="/order-success" element={<OrderSuccess />} />
-          </Routes>
-        </Layout>
+          </Route>
+        </Routes>
       </BrowserRouter>
     </CartProvider>
   </AuthProvider>

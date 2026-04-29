@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { products } from '../data/products';
+import { products as staticProducts } from '../data/products';
 import { ArrowLeft, ShoppingCart, CheckCircle, ShieldCheck, Truck, Minus, Plus } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import { useCart } from '../context/CartContext';
@@ -9,8 +9,14 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
-  const product = products.find(p => p.id === id);
+  const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+
+  React.useEffect(() => {
+    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+    const allProducts = [...customProducts, ...staticProducts];
+    setProduct(allProducts.find(p => p.id === id));
+  }, [id]);
 
   if (!product) {
     return (

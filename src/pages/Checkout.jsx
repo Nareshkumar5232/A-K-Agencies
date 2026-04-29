@@ -41,9 +41,21 @@ const Checkout = () => {
     if (validate()) {
       toast.loading("Processing order...");
       setTimeout(() => {
+        const orderId = `AK-${Math.floor(Math.random()*90000) + 10000}`;
+        const newOrder = {
+          orderId,
+          date: new Date().toISOString(),
+          customerDetails: form,
+          items: cartItems,
+          totalAmount: total,
+          paymentMethod: method
+        };
+        const existingOrders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
+        localStorage.setItem('ak_orders', JSON.stringify([newOrder, ...existingOrders]));
+
         toast.dismiss();
         clearCart();
-        navigate('/order-success', { state: { orderId: `AK-${Math.floor(Math.random()*90000) + 10000}` } });
+        navigate('/order-success', { state: { orderId } });
       }, 2000);
     } else {
       toast.error("Please correctly fill all mandatory fields.");

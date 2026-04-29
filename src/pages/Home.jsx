@@ -3,14 +3,21 @@ import Hero from '../components/Hero';
 import About from '../components/About';
 import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
-import { products } from '../data/products';
+import { products as staticProducts } from '../data/products';
 import { Link } from 'react-router-dom';
 import LazyImage from '../components/LazyImage';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 const Home = () => {
-  const featuredProducts = products.slice(0, 3);
+  const [allProducts, setAllProducts] = React.useState(staticProducts);
+
+  React.useEffect(() => {
+    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+    setAllProducts([...customProducts, ...staticProducts]);
+  }, []);
+
+  const featuredProducts = allProducts.slice(0, 3);
   const { addToCart } = useCart();
 
   return (

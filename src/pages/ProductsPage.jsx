@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, ShoppingCart, CheckCircle, PackageSearch } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
-import { products, categories } from '../data/products';
+import { products as staticProducts, categories } from '../data/products';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
@@ -11,7 +11,14 @@ const ProductsPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { addToCart } = useCart();
 
-  const filteredProducts = products.filter(p => {
+  const [allProducts, setAllProducts] = useState(staticProducts);
+
+  React.useEffect(() => {
+    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+    setAllProducts([...customProducts, ...staticProducts]);
+  }, []);
+
+  const filteredProducts = allProducts.filter(p => {
     const matchesCategory = filter === 'All' || p.category === filter;
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
