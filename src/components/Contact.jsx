@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Globe, Send, Loader2, CheckCircle } from 'lucide-react';
+import api from '../api/axiosInstance';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', phone: '', email: '', message: '' });
@@ -17,18 +18,31 @@ const Contact = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
     
     setStatus('loading');
     
-    // Simulate API submission
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', phone: '', email: '', message: '' });
+    try {
+      const response = await api.post('/inquiry', {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message
+      });
+
+      if (response.status === 201) {
+        setStatus('success');
+        setFormData({ name: '', phone: '', email: '', message: '' });
+        setTimeout(() => setStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error('Error submitting inquiry to backend:', error);
+      setStatus('error');
+      alert("There was an error submitting your inquiry. Please try again later.");
       setTimeout(() => setStatus('idle'), 5000);
-    }, 1500);
+    }
   };
 
   return (

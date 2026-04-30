@@ -28,6 +28,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import { AdminLayout, DashboardStats } from './pages/admin/AdminDashboard';
 import AddProduct from './pages/admin/AddProduct';
 import Orders from './pages/admin/Orders';
+import Inquiries from './pages/admin/Inquiries';
 import { Outlet } from 'react-router-dom';
 
 // Scroll to top on route change
@@ -78,6 +79,7 @@ function App() {
             <Route path="dashboard" element={<DashboardStats />} />
             <Route path="add-product" element={<AddProduct />} />
             <Route path="orders" element={<Orders />} />
+            <Route path="inquiries" element={<Inquiries />} />
           </Route>
 
           {/* User Routes */}

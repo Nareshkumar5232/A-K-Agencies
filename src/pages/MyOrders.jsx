@@ -109,6 +109,33 @@ const MyOrders = () => {
                       </li>
                     ))}
                   </ul>
+                  
+                  <div className="mt-4 border-t border-gray-100 dark:border-slate-700 pt-4 flex flex-col gap-2">
+                    {(() => {
+                      const subtotal = order.items?.reduce((sum, item) => sum + (item.price * item.quantity), 0) || 0;
+                      const gst = subtotal * 0.18;
+                      return (
+                        <>
+                          <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            <span>Subtotal</span>
+                            <span>₹{subtotal.toLocaleString('en-IN')}</span>
+                          </div>
+                          <div className="flex justify-between text-sm text-gray-500 dark:text-gray-400 font-medium">
+                            <span>GST (18%)</span>
+                            <span>₹{gst.toLocaleString('en-IN')}</span>
+                          </div>
+                          <div className="flex justify-between text-sm text-green-600 font-bold mb-2">
+                            <span>Freight Forwarding</span>
+                            <span>Free</span>
+                          </div>
+                          <div className="flex justify-between text-base font-extrabold text-gray-900 dark:text-white border-t border-gray-100 dark:border-slate-700 pt-2">
+                            <span>Total Payable</span>
+                            <span className="text-brand">₹{order.totalAmount.toLocaleString('en-IN')}</span>
+                          </div>
+                        </>
+                      );
+                    })()}
+                  </div>
                 </div>
               </div>
             ))}

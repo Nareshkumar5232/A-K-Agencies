@@ -8,7 +8,7 @@ const register = expressasynhandler(async(req,res)=>{
     const check_user = await user.findOne({email:email});
     if(check_user) {
         console.log("email already exits!");
-        res.status(400).json({message: "User already exits"});
+        return res.status(400).json({message: "User already exits"});
     }
     const round = 10;
     const hashed_pass = await bcrypt.hash(password,round);

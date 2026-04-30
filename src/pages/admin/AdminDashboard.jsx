@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, PlusCircle, ShoppingBag, LogOut, Package } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, ShoppingBag, LogOut, Package, MessageSquare } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { products as staticProducts } from '../../data/products';
 import api from '../../api/axiosInstance';
@@ -21,6 +21,7 @@ const AdminLayout = () => {
     { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Add Product', path: '/admin/add-product', icon: PlusCircle },
     { name: 'Orders', path: '/admin/orders', icon: ShoppingBag },
+    { name: 'Inquiries', path: '/admin/inquiries', icon: MessageSquare },
   ];
 
   return (

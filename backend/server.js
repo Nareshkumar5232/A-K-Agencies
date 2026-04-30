@@ -1,9 +1,11 @@
 const express = require('express');
-const bodyparser = require('body-parser')
+const path = require('path');
+const bodyparser = require('body-parser');
 require('dotenv').config();
 const auth = require('./router/auth');
 const product = require('./router/product');
 const order = require('./router/order');
+const inquiry = require('./router/inquiry');
 const connectdb = require('./config');
 
 const app = express();
@@ -12,6 +14,7 @@ const port = process.env.PORT;
 
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 const allowedOrigins = ['http://localhost:5173'];
 
@@ -27,6 +30,7 @@ connectdb();
 app.use('/api/auth',auth);
 app.use('/api/product',product);
 app.use('/api/order',order);
+app.use('/api/inquiry',inquiry);
 
 
 app.use((req, res, next) => {

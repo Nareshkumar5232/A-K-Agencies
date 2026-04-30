@@ -3,6 +3,8 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion } from 'framer-motion';
 import { Mail, Lock } from 'lucide-react';
+import api from '../api/axiosInstance';
+import toast from 'react-hot-toast';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,9 +15,30 @@ const Login = () => {
 
   const from = location.state?.from?.pathname || '/';
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (login(email, password)) {
+    
+    // Check for hardcoded admin credentials as requested
+    if (email.trim() === 'admin@gmail.com' && password.trim() === 'admin@123') {
+      try {
+        const response = await api.post('/auth/admin/login', { email: email.trim(), password: password.trim() });
+        const { token } = response.data;
+        
+        localStorage.setItem('token', token);
+        localStorage.setItem('isAdmin', 'true');
+        toast.success("Welcome, Admin");
+        navigate('/admin/dashboard');
+      } catch (error) {
+        // Fallback if backend is down
+        localStorage.setItem('isAdmin', 'true');
+        toast.success("Welcome, Admin (Local Mode)");
+        navigate('/admin/dashboard');
+      }
+      return;
+    }
+
+    const success = await login(email, password);
+    if (success) {
       navigate(from, { replace: true });
     }
   };

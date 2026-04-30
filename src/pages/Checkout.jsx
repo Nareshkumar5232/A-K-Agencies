@@ -95,33 +95,33 @@ const Checkout = () => {
                 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Business/Contact Name *</label>
-                    <input type="text" value={form.name} onChange={e => setForm({...form, name:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 ${errors.name ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-brand outline-none`} />
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Business/Contact Name *</label>
+                    <input type="text" value={form.name} onChange={e => setForm({...form, name:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 dark:bg-slate-700 dark:text-white ${errors.name ? 'border-red-500' : 'border-gray-200 dark:border-slate-600'} focus:ring-2 focus:ring-brand outline-none`} />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Mobile Number *</label>
-                    <input type="tel" value={form.phone} onChange={e => setForm({...form, phone:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 ${errors.phone ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-brand outline-none`} />
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Mobile Number *</label>
+                    <input type="tel" value={form.phone} onChange={e => setForm({...form, phone:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 dark:bg-slate-700 dark:text-white ${errors.phone ? 'border-red-500' : 'border-gray-200 dark:border-slate-600'} focus:ring-2 focus:ring-brand outline-none`} />
                   </div>
                 </div>
                 
                 <div className="mb-6">
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Email Address (Optional)</label>
-                  <input type="email" value={form.email} onChange={e => setForm({...form, email:e.target.value})} className="w-full p-3 rounded-xl border border-gray-200 bg-gray-50 focus:ring-2 focus:ring-brand outline-none" />
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Email Address (Optional)</label>
+                  <input type="email" value={form.email} onChange={e => setForm({...form, email:e.target.value})} className="w-full p-3 rounded-xl border border-gray-200 dark:border-slate-600 bg-gray-50 dark:bg-slate-700 dark:text-white focus:ring-2 focus:ring-brand outline-none" />
                 </div>
                 
                 <div className="mb-6">
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Complete Address *</label>
-                  <textarea rows="3" value={form.address} onChange={e => setForm({...form, address:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 ${errors.address ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-brand outline-none resize-none`}></textarea>
+                  <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Complete Address *</label>
+                  <textarea rows="3" value={form.address} onChange={e => setForm({...form, address:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 dark:bg-slate-700 dark:text-white ${errors.address ? 'border-red-500' : 'border-gray-200 dark:border-slate-600'} focus:ring-2 focus:ring-brand outline-none resize-none`}></textarea>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">City/Town *</label>
-                    <input type="text" value={form.city} onChange={e => setForm({...form, city:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 ${errors.city ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-brand outline-none`} />
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">City/Town *</label>
+                    <input type="text" value={form.city} onChange={e => setForm({...form, city:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 dark:bg-slate-700 dark:text-white ${errors.city ? 'border-red-500' : 'border-gray-200 dark:border-slate-600'} focus:ring-2 focus:ring-brand outline-none`} />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-2">Pincode *</label>
-                    <input type="text" maxLength="6" value={form.pincode} onChange={e => setForm({...form, pincode:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 ${errors.pincode ? 'border-red-500' : 'border-gray-200'} focus:ring-2 focus:ring-brand outline-none`} />
+                    <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">Pincode *</label>
+                    <input type="text" maxLength="6" value={form.pincode} onChange={e => setForm({...form, pincode:e.target.value})} className={`w-full p-3 rounded-xl border bg-gray-50 dark:bg-slate-700 dark:text-white ${errors.pincode ? 'border-red-500' : 'border-gray-200 dark:border-slate-600'} focus:ring-2 focus:ring-brand outline-none`} />
                   </div>
                 </div>
               </div>
@@ -130,10 +130,10 @@ const Checkout = () => {
               <div className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700">
                 <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-6 flex items-center gap-2"><ShieldCheck className="text-brand"/> Payment Method</h3>
                 <div className="space-y-4">
-                  <label className={`block border p-5 rounded-2xl cursor-pointer transition-all ${method === 'cod' ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 hover:bg-gray-50'}`}>
+                  <label className={`block border p-5 rounded-2xl cursor-pointer transition-all ${method === 'cod' ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 dark:border-slate-700 hover:bg-gray-50 dark:hover:bg-slate-700'}`}>
                     <div className="flex items-center">
                       <input type="radio" value="cod" checked={method === 'cod'} onChange={() => setMethod('cod')} className="scale-125 text-brand focus:ring-brand" />
-                      <span className="ml-4 font-bold text-gray-900 text-lg">Cash on Delivery</span>
+                      <span className="ml-4 font-bold text-gray-900 dark:text-white text-lg">Cash on Delivery</span>
                       <Truck className="ml-auto text-gray-400" />
                     </div>
                   </label>
