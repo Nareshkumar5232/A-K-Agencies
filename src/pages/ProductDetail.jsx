@@ -4,6 +4,7 @@ import { products as staticProducts } from '../data/products';
 import { ArrowLeft, ShoppingCart, CheckCircle, ShieldCheck, Truck, Minus, Plus } from 'lucide-react';
 import LazyImage from '../components/LazyImage';
 import { useCart } from '../context/CartContext';
+import api from '../api/axiosInstance';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -11,11 +12,24 @@ const ProductDetail = () => {
   const { addToCart } = useCart();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
-    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
-    const allProducts = [...customProducts, ...staticProducts];
-    setProduct(allProducts.find(p => p.id === id));
+    const fetchProduct = async () => {
+      try {
+        const response = await api.get(`/products/${id}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error("Failed to fetch product from backend:", error);
+        // Fallback to local storage/static for now
+        const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+        const allProducts = [...customProducts, ...staticProducts];
+        setProduct(allProducts.find(p => p.id === id || p.id === Number(id)));
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProduct();
   }, [id]);
 
   if (!product) {

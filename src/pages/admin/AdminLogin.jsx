@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { Lock } from 'lucide-react';
+import api from '../../api/axiosInstance';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (email.trim() === 'admin@gmail.com' && password.trim() === 'admin@123') {
+    try {
+      const response = await api.post('/auth/admin/login', { email: email.trim(), password: password.trim() });
+      const { token } = response.data;
+      
+      localStorage.setItem('token', token);
       localStorage.setItem('isAdmin', 'true');
       toast.success("Welcome, Admin");
       navigate('/admin/dashboard');
-    } else {
-      toast.error("Invalid Admin Credentials");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Invalid Admin Credentials");
     }
   };
 

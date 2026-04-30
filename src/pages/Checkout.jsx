@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { CheckCircle, ShieldCheck, MapPin, Truck, Landmark } from 'lucide-react';
 import toast from 'react-hot-toast';
+import api from '../api/axiosInstance';
 
 const Checkout = () => {
   const { cartItems, getSubtotal, clearCart } = useCart();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [method, setMethod] = useState('upi');
 
   const [form, setForm] = useState({
-    name: '', phone: '', email: '',
+    name: user?.name || '', phone: '', email: user?.email || '',
     address: '', city: '', pincode: ''
   });
   const [errors, setErrors] = useState({});
@@ -36,27 +39,42 @@ const Checkout = () => {
     return Object.keys(err).length === 0;
   };
 
-  const handlePlaceOrder = (e) => {
+  const handlePlaceOrder = async (e) => {
     e.preventDefault();
     if (validate()) {
       toast.loading("Processing order...");
-      setTimeout(() => {
-        const orderId = `AK-${Math.floor(Math.random()*90000) + 10000}`;
-        const newOrder = {
-          orderId,
-          date: new Date().toISOString(),
-          customerDetails: form,
-          items: cartItems,
-          totalAmount: total,
-          paymentMethod: method
-        };
-        const existingOrders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
-        localStorage.setItem('ak_orders', JSON.stringify([newOrder, ...existingOrders]));
+      
+      const newOrder = {
+        customerDetails: form,
+        items: cartItems,
+        totalAmount: total,
+        paymentMethod: method
+      };
 
+      try {
+        const response = await api.post('/orders', newOrder);
+        const { orderId } = response.data;
+        
         toast.dismiss();
         clearCart();
         navigate('/order-success', { state: { orderId } });
-      }, 2000);
+      } catch (error) {
+        console.error("Failed to place order via backend:", error);
+        
+        // Fallback
+        setTimeout(() => {
+          const orderId = `AK-${Math.floor(Math.random()*90000) + 10000}`;
+          newOrder.orderId = orderId;
+          newOrder.date = new Date().toISOString();
+          
+          const existingOrders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
+          localStorage.setItem('ak_orders', JSON.stringify([newOrder, ...existingOrders]));
+
+          toast.dismiss();
+          clearCart();
+          navigate('/order-success', { state: { orderId } });
+        }, 1000);
+      }
     } else {
       toast.error("Please correctly fill all mandatory fields.");
     }

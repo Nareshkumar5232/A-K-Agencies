@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { categories } from '../../data/products';
+import api from '../../api/axiosInstance';
 
 const AddProduct = () => {
   const [form, setForm] = useState({
@@ -22,14 +23,13 @@ const AddProduct = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.price || !form.img) {
       return toast.error('Please fill all required fields');
     }
 
     const newProduct = {
-      id: `prod_custom_${Date.now()}`,
       name: form.name,
       description: form.description,
       price: Number(form.price),
@@ -39,10 +39,18 @@ const AddProduct = () => {
       specs: "Custom Added Product"
     };
 
-    const existing = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
-    localStorage.setItem('ak_custom_products', JSON.stringify([newProduct, ...existing]));
+    try {
+      await api.post('/products', newProduct);
+      toast.success('Product added successfully!');
+    } catch (error) {
+      console.error("Failed to add product to backend:", error);
+      // Fallback
+      newProduct.id = `prod_custom_${Date.now()}`;
+      const existing = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+      localStorage.setItem('ak_custom_products', JSON.stringify([newProduct, ...existing]));
+      toast.success('Product added successfully! (Fallback mode)');
+    }
     
-    toast.success('Product added successfully!');
     setForm({ name: '', description: '', price: '', category: categories[1], img: '' });
   };
 

@@ -83,6 +83,9 @@ const Navbar = () => {
                     <UserIcon size={16} className="text-brand dark:text-brand-light" />
                     {user.name.split(' ')[0]}
                   </span>
+                  <Link to="/my-orders" className="text-sm font-semibold text-gray-600 dark:text-gray-300 hover:text-brand dark:hover:text-brand-light transition-colors ml-2 mr-2">
+                    Orders
+                  </Link>
                   <button 
                     onClick={logout}
                     className="p-2 text-gray-500 hover:text-red-500 transition-colors"
@@ -155,6 +158,13 @@ const Navbar = () => {
                     <div className="px-4 py-2 text-gray-600 dark:text-gray-400 font-medium">
                       Signed in as <span className="text-gray-900 dark:text-white font-bold">{user.name}</span>
                     </div>
+                    <Link
+                      to="/my-orders"
+                      onClick={() => setIsOpen(false)}
+                      className="flex justify-center w-full px-5 py-3.5 rounded-xl bg-brand/10 dark:bg-brand/20 text-brand dark:text-brand-light font-bold hover:bg-brand/20 transition-colors mb-2"
+                    >
+                      My Orders
+                    </Link>
                     <button
                       onClick={() => { logout(); setIsOpen(false); }}
                       className="flex justify-center w-full px-5 py-3.5 rounded-xl bg-gray-100 dark:bg-slate-800 text-red-500 font-bold hover:bg-red-50 dark:hover:bg-slate-700 transition-colors"

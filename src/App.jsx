@@ -20,6 +20,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import ProtectedRoute from './components/ProtectedRoute';
+import MyOrders from './pages/MyOrders';
 
 // Admin Components
 import AdminRoute from './components/AdminRoute';
@@ -91,6 +92,11 @@ function App() {
             <Route path="/checkout" element={
               <ProtectedRoute>
                 <Checkout />
+              </ProtectedRoute>
+            } />
+            <Route path="/my-orders" element={
+              <ProtectedRoute>
+                <MyOrders />
               </ProtectedRoute>
             } />
             <Route path="/order-success" element={<OrderSuccess />} />
