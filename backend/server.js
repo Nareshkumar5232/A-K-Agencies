@@ -3,6 +3,7 @@ const bodyparser = require('body-parser')
 require('dotenv').config();
 const auth = require('./router/auth');
 const product = require('./router/product');
+const order = require('./router/order');
 const connectdb = require('./config');
 
 const app = express();
@@ -22,6 +23,7 @@ connectdb();
 
 app.use('/api/auth',auth);
 app.use('/api/product',product);
+app.use('/api/order',order);
 
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }));
