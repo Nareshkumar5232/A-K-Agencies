@@ -5,7 +5,7 @@ const LazyImage = ({ src, alt, className = '', ...props }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
-  const fallbackImage = 'https://images.unsplash.com/photo-1590846406792-0adc7f138fbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80';
+  const fallbackImage = '/images/hero_kitchen.png';
 
   return (
     <div className={`relative overflow-hidden ${className}`}>

@@ -7,7 +7,7 @@ export const products = [
     category: "Cooking", 
     price: 35000, 
     stock: 12,
-    img: "http://localhost:5000/images/prod_1.jpg",
+    img: '/images/prod_1.png',
     specs: "304 Grade Stainless Steel, 4 High Pressure Brass Burners, Heavy Cast Iron Pan Support",
     description: "Designed for commercial Indian kitchens with high-volume requirements. Our 4-burner range ensures continuous high-heat operations with maximum fuel efficiency. Fully constructed from food-grade 304 SS for extreme durability."
   },
@@ -17,7 +17,7 @@ export const products = [
     category: "Refrigeration", 
     price: 65000, 
     stock: 5,
-    img: "http://localhost:5000/images/prod_2.jpg",
+    img: '/images/prod_2.png',
     specs: "800L Capacity, Frost Free, Adjustable Shelves",
     description: "Perfect for beverage and dairy storage. Features double-glazed glass doors, energy-efficient compressors, and adjustable shelving to handle varied inventory. Built-in LED lighting highlights products perfectly."
   },
@@ -27,7 +27,7 @@ export const products = [
     category: "Preparation", 
     price: 18500, 
     stock: 20,
-    img: "http://localhost:5000/images/prod_3.jpg",
+    img: '/images/prod_3.png',
     specs: "Custom Sizes, Deep Integrated Sink, Undershelf",
     description: "A robust workstation essential for any prep area. Features an integrated deep sink for easy washing, anti-spill raised edges, and a sturdy undershelf for storing utensils or dry ingredients."
   },
@@ -37,7 +37,7 @@ export const products = [
     category: "Cooking", 
     price: 120000, 
     stock: 3,
-    img: "http://localhost:5000/images/prod_4.jpg",
+    img: '/images/prod_4.png',
     specs: "Digital Control, 4 Trays (600x400mm), Steam Function",
     description: "Achieve perfect baking consistency with dual-fan convection technology. Includes programmable digital controls and a steam injection feature, making it ideal for bread, pastries, and biscuits."
   },
@@ -47,7 +47,7 @@ export const products = [
     category: "Preparation", 
     price: 45000, 
     stock: 8,
-    img: "http://localhost:5000/images/prod_5.jpg",
+    img: '/images/prod_5.png',
     specs: "20kg Capacity, Heavy Duty Motor, SS Bowl",
     description: "Designed for commercial bakeries and pizzerias. The spiral hook and rotating bowl ensure perfect dough consistency without overheating. Features safety guard and emergency stop."
   },
@@ -57,7 +57,7 @@ export const products = [
     category: "Storage", 
     price: 12500, 
     stock: 25,
-    img: "http://localhost:5000/images/prod_6.jpg",
+    img: '/images/prod_6.png',
     specs: "Adjustable Height, Anti-rust, 200kg Load per tier",
     description: "Maximize your pantry space. These heavy-duty 4-tier racks are fully adjustable, easy to assemble, and capable of holding bulk ingredients or heavy pots without bending."
   },
@@ -67,7 +67,7 @@ export const products = [
     category: "Refrigeration", 
     price: 52000, 
     stock: 6,
-    img: "http://localhost:5000/images/prod_7.jpg",
+    img: '/images/prod_7.png',
     specs: "300L Capacity, Temp Range 2°C to 8°C",
     description: "Space-saving refrigeration that doubles as a workstation. Fits perfectly under standard counters, offering quick access to chilled ingredients during peak service hours."
   },
@@ -77,7 +77,7 @@ export const products = [
     category: "Preparation", 
     price: 28000, 
     stock: 15,
-    img: "http://localhost:5000/images/prod_8.jpg",
+    img: '/images/prod_8.png',
     specs: "Output: 150kg/hr, SS Construction, Forward/Reverse",
     description: "High-power meat grinder for butcheries and large restaurants. Quickly processes meat with minimal waste. Easy to disassemble and wash for maximum hygiene."
   },
@@ -87,7 +87,7 @@ export const products = [
     category: "Preparation", 
     price: 32000, 
     stock: 10,
-    img: "http://localhost:5000/images/prod_9.jpg",
+    img: '/images/prod_9.png',
     specs: "10L Bowl, 3 Attachments (Whisk, Beater, Hook)",
     description: "Versatile mixer for whipping, beating, and light dough mixing. Includes three quick-change attachments. Variable speed control ensures precision for delicate recipes."
   },
@@ -97,7 +97,7 @@ export const products = [
     category: "Cooking", 
     price: 40000, 
     stock: 4,
-    img: "http://localhost:5000/images/prod_10.jpg",
+    img: '/images/prod_10.png',
     specs: "Baffle Filters, High Suction Capacity",
     description: "Keep your kitchen smoke-free and legally compliant. Our heavy-duty exhaust hoods feature easy-to-clean baffle filters and powerful extraction dynamics tailored to Indian cooking fumes."
   },
@@ -107,7 +107,7 @@ export const products = [
     category: "Cooking", 
     price: 22000, 
     stock: 18,
-    img: "http://localhost:5000/images/prod_11.jpg",
+    img: '/images/prod_11.png',
     specs: "16L Total Capacity, Auto Temp Control",
     description: "Achieve perfectly crisp results every time. Twin baskets allow simultaneous frying of different items. Features cold zone technology to extend oil life and automatic temperature cutoff."
   },
@@ -117,7 +117,7 @@ export const products = [
     category: "Preparation", 
     price: 24500, 
     stock: 11,
-    img: "http://localhost:5000/images/prod_12.jpg",
+    img: '/images/prod_12.png',
     specs: "Output: 200kg/hr, Abrasive Peeling, Water Inlet",
     description: "Drastically reduce prep time. This machine effectively peels 10kg of potatoes or root vegetables in minutes using an abrasive disc, while washing away the skin simultaneously."
   },
@@ -127,7 +127,7 @@ export const products = [
     category: "Refrigeration", 
     price: 35000, 
     stock: 7,
-    img: "http://localhost:5000/images/prod_13.jpg",
+    img: '/images/prod_13.png',
     specs: "Dual Temperature, Hard Top lockable",
     description: "Reliable bulk freezing for meats and frozen goods. High-density PUF insulation maintains extreme low temperatures even during power outages. Convertible to chiller mode."
   },
@@ -137,7 +137,7 @@ export const products = [
     category: "Storage", 
     price: 15500, 
     stock: 22,
-    img: "http://localhost:5000/images/prod_14.jpg",
+    img: '/images/prod_14.png',
     specs: "15 Tiers, 1/1 GN Compatible, Castor Wheels",
     description: "Mobile storage solution for busy kitchens. Holds up to 15 standard GN pans. Heavy-duty castor wheels with brakes ensure smooth transport from oven to service area."
   }

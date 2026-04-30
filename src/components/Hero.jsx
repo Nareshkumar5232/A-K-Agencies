@@ -68,7 +68,7 @@ const Hero = () => {
             <div className="grid grid-cols-2 gap-5">
               <div className="space-y-5 pt-12">
                 <div className="rounded-3xl overflow-hidden shadow-2xl dark:shadow-[0_0_20px_rgba(255,255,255,0.05)] bg-white/95 dark:bg-slate-800/90 backdrop-blur-md border border-gray-100 dark:border-slate-700 p-2.5 transform transition-all hover:-translate-y-2 duration-300">
-                  <LazyImage src="https://images.unsplash.com/photo-1590846406792-0adc7f138fbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Kitchen Setup" className="w-full h-56 rounded-2xl" />
+                  <LazyImage src="/images/hero_kitchen.png" alt="Commercial Kitchen Setup" className="w-full h-56 rounded-2xl" />
                 </div>
                 <div className="rounded-3xl overflow-hidden shadow-xl dark:shadow-[0_0_15px_rgba(255,255,255,0.05)] bg-white/95 dark:bg-slate-800/90 backdrop-blur-md border border-gray-100 dark:border-slate-700 p-8 flex flex-col items-center justify-center transform transition-all hover:-translate-y-2 duration-300 text-gray-900 dark:text-white">
                   <ChefHat size={48} className="text-brand dark:text-brand-light mb-4 stroke-[1.5]" />
@@ -89,7 +89,7 @@ const Hero = () => {
                   </ul>
                 </div>
                 <div className="rounded-3xl overflow-hidden shadow-2xl dark:shadow-[0_0_20px_rgba(255,255,255,0.05)] bg-white/95 dark:bg-slate-800/90 backdrop-blur-md border border-gray-100 dark:border-slate-700 p-2.5 transform transition-all hover:-translate-y-2 duration-300">
-                  <LazyImage src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Restaurant Baking Preparation" className="w-full h-64 rounded-2xl" />
+                  <LazyImage src="/images/hero_equipment.png" alt="Commercial Kitchen Equipment" className="w-full h-64 rounded-2xl" />
                 </div>
               </div>
             </div>

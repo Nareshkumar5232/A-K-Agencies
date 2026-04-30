@@ -10,12 +10,12 @@ const Products = () => {
   const categories = ['All', 'Cooking', 'Refrigeration', 'Preparation', 'Storage'];
 
   const products = [
-    { id: 1, name: "Heavy Duty 4-Burner Gas Range", category: "Cooking", specs: "Stainless Steel, 304 Grade", img: "https://images.unsplash.com/photo-1590846406792-0adc7f138fbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 2, name: "Visi Cooler (Double Door)", category: "Refrigeration", specs: "800L Capacity, Frost Free", img: "https://images.unsplash.com/photo-1584283459954-4050e64c1bd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 3, name: "Commercial SS Prep Table", category: "Preparation", specs: "Sink Attached, Custom Sizes", img: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 4, name: "Convection Bakery Oven", category: "Cooking", specs: "Digital Control, 4 Trays", img: "https://images.unsplash.com/photo-1584283459986-e8dd627c26fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 5, name: "Spiral Dough Mixer", category: "Preparation", specs: "20kg Capacity, Heavy Motor", img: "https://images.unsplash.com/photo-1593618998160-e34014e67546?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-    { id: 6, name: "SS Storage Rack 4-Tier", category: "Storage", specs: "Adjustable Height, Anti-rust", img: "https://images.unsplash.com/photo-1621293954908-907159247fc8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
+    { id: 1, name: "Heavy Duty 4-Burner Gas Range", category: "Cooking", specs: "Stainless Steel, 304 Grade", img: "/images/prod_1.png" },
+    { id: 2, name: "Visi Cooler (Double Door)", category: "Refrigeration", specs: "800L Capacity, Frost Free", img: "/images/prod_2.png" },
+    { id: 3, name: "Commercial SS Prep Table", category: "Preparation", specs: "Sink Attached, Custom Sizes", img: "/images/prod_3.png" },
+    { id: 4, name: "Convection Bakery Oven", category: "Cooking", specs: "Digital Control, 4 Trays", img: "/images/prod_4.png" },
+    { id: 5, name: "Spiral Dough Mixer", category: "Preparation", specs: "20kg Capacity, Heavy Motor", img: "/images/prod_5.png" },
+    { id: 6, name: "SS Storage Rack 4-Tier", category: "Storage", specs: "Adjustable Height, Anti-rust", img: "/images/prod_6.png" },
   ];
 
   const filteredProducts = products.filter(p => {
