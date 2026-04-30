@@ -5,6 +5,7 @@ import LazyImage from '../components/LazyImage';
 import { products as staticProducts, categories } from '../data/products';
 import { Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
+import api from '../api/axiosInstance';
 
 const ProductsPage = () => {
   const [filter, setFilter] = useState('All');
@@ -12,10 +13,24 @@ const ProductsPage = () => {
   const { addToCart } = useCart();
 
   const [allProducts, setAllProducts] = useState(staticProducts);
+  const [loading, setLoading] = useState(true);
 
   React.useEffect(() => {
-    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
-    setAllProducts([...customProducts, ...staticProducts]);
+    const fetchProducts = async () => {
+      try {
+        const response = await api.get('/products');
+        // Assuming response.data contains the list of products
+        setAllProducts(response.data);
+      } catch (error) {
+        console.error("Failed to fetch products from backend:", error);
+        // Fallback to local storage/static for now if backend is not ready
+        const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+        setAllProducts([...customProducts, ...staticProducts]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
   }, []);
 
   const filteredProducts = allProducts.filter(p => {

@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import api from '../../api/axiosInstance';
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedOrders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
-    // Sort newest first
-    setOrders(savedOrders.sort((a,b) => new Date(b.date) - new Date(a.date)));
+    const fetchOrders = async () => {
+      try {
+        const response = await api.get('/admin/orders');
+        setOrders(response.data);
+      } catch (error) {
+        console.error("Failed to fetch orders from backend:", error);
+        // Fallback
+        const savedOrders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
+        setOrders(savedOrders.sort((a,b) => new Date(b.date) - new Date(a.date)));
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrders();
   }, []);
 
   return (

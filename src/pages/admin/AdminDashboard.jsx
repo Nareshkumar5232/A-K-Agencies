@@ -3,6 +3,7 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, PlusCircle, ShoppingBag, LogOut, Package } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { products as staticProducts } from '../../data/products';
+import api from '../../api/axiosInstance';
 
 const AdminLayout = () => {
   const location = useLocation();
@@ -60,19 +61,32 @@ const AdminLayout = () => {
 
 const DashboardStats = () => {
   const [stats, setStats] = useState({ products: 0, orders: 0, revenue: 0 });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
-    const totalProducts = staticProducts.length + customProducts.length;
-    
-    const orders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
-    const totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0);
+    const fetchStats = async () => {
+      try {
+        const response = await api.get('/admin/stats');
+        setStats(response.data);
+      } catch (error) {
+        console.error("Failed to fetch admin stats from backend:", error);
+        // Fallback
+        const customProducts = JSON.parse(localStorage.getItem('ak_custom_products') || '[]');
+        const totalProducts = staticProducts.length + customProducts.length;
+        
+        const orders = JSON.parse(localStorage.getItem('ak_orders') || '[]');
+        const totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0);
 
-    setStats({
-      products: totalProducts,
-      orders: orders.length,
-      revenue: totalRevenue
-    });
+        setStats({
+          products: totalProducts,
+          orders: orders.length,
+          revenue: totalRevenue
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
   }, []);
 
   return (
