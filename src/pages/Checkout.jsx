@@ -10,7 +10,7 @@ const Checkout = () => {
   const { cartItems, getSubtotal, clearCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [method, setMethod] = useState('upi');
+  const [method, setMethod] = useState('cod');
 
   const [form, setForm] = useState({
     name: user?.name || '', phone: '', email: user?.email || '',
@@ -130,30 +130,6 @@ const Checkout = () => {
               <div className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-700">
                 <h3 className="text-xl font-extrabold text-gray-900 dark:text-white mb-6 flex items-center gap-2"><ShieldCheck className="text-brand"/> Payment Method</h3>
                 <div className="space-y-4">
-                  
-                  <label className={`block border p-5 rounded-2xl cursor-pointer transition-all ${method === 'upi' ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 hover:bg-gray-50'}`}>
-                    <div className="flex items-center">
-                      <input type="radio" value="upi" checked={method === 'upi'} onChange={() => setMethod('upi')} className="scale-125 text-brand focus:ring-brand" />
-                      <span className="ml-4 font-bold text-gray-900 text-lg">UPI / QR Code</span>
-                      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" alt="UPI" className="ml-auto h-5 opacity-70"/>
-                    </div>
-                  </label>
-                  
-                  <label className={`block border p-5 rounded-2xl cursor-pointer transition-all ${method === 'card' ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 hover:bg-gray-50'}`}>
-                    <div className="flex items-center">
-                      <input type="radio" value="card" checked={method === 'card'} onChange={() => setMethod('card')} className="scale-125 text-brand focus:ring-brand" />
-                      <span className="ml-4 font-bold text-gray-900 text-lg">Credit / Debit Card</span>
-                      <Landmark className="ml-auto text-gray-400" />
-                    </div>
-                    {method === 'card' && (
-                      <div className="mt-4 pt-4 border-t border-brand/20 grid grid-cols-2 gap-4">
-                        <input type="text" placeholder="Card Number" className="col-span-2 w-full p-3 rounded-lg border border-gray-200 bg-white" />
-                        <input type="text" placeholder="MM/YY" className="w-full p-3 rounded-lg border border-gray-200 bg-white" />
-                        <input type="text" placeholder="CVC" className="w-full p-3 rounded-lg border border-gray-200 bg-white" />
-                      </div>
-                    )}
-                  </label>
-
                   <label className={`block border p-5 rounded-2xl cursor-pointer transition-all ${method === 'cod' ? 'border-brand bg-brand/5 ring-1 ring-brand' : 'border-gray-200 hover:bg-gray-50'}`}>
                     <div className="flex items-center">
                       <input type="radio" value="cod" checked={method === 'cod'} onChange={() => setMethod('cod')} className="scale-125 text-brand focus:ring-brand" />
@@ -161,7 +137,6 @@ const Checkout = () => {
                       <Truck className="ml-auto text-gray-400" />
                     </div>
                   </label>
-
                 </div>
               </div>
 
