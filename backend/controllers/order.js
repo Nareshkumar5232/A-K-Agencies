@@ -2,7 +2,7 @@ const expressasynchandler = require('express-async-handler');
 const order_model = require('../models/order');
 
 const create_order = expressasynchandler(async(req,res)=>{
-    const {items}= req.body.items();
+    const {items}= req.body.items;
     let total_price = 0;
     let total_items = 0;
     let order_items = [];

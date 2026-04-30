@@ -10,7 +10,10 @@ const app = express();
 
 const port = process.env.PORT;
 
-const allowedOrigins = ['http://localhost:3000'];
+app.use(express.json());
+app.use(bodyparser.urlencoded({ extended: true }));
+
+const allowedOrigins = ['http://localhost:5173'];
 
 app.use(require('cors')({
     origin: allowedOrigins,
@@ -25,8 +28,6 @@ app.use('/api/auth',auth);
 app.use('/api/product',product);
 app.use('/api/order',order);
 
-app.use(express.json());
-app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
     console.log(`Got request at ${req.url} with method ${req.method} from ${req.ip}`);

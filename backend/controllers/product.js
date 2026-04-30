@@ -21,7 +21,8 @@ const product = expressasynhandler(async(req,res)=>{
 });
 
 const create_product = expressasynhandler(async(req,res)=>{
-    const {name ,price , stock , category} = req.body();
+    const {name ,price , stock , category} = req.body;
+    console.log(`creating product with name: ${name}, price: ${price}, stock: ${stock}, category: ${category}`);
     const new_product = await product_model.create({
         name: name,
         price: price,

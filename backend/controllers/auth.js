@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const expressasynhandler = require ('express-async-handler');
 
 const register = expressasynhandler(async(req,res)=>{
-    const {name,email,password} = req.body();
+    const {name,email,password} = req.body;
     const check_user = await user.findOne({email:email});
     if(check_user) {
         console.log("email already exits!");
@@ -15,7 +15,7 @@ const register = expressasynhandler(async(req,res)=>{
     const newuser = await user.create({
         name: name,
         email: email,
-        pass: hashed_pass
+        password: hashed_pass
     });
     const token = jwt.sign({id: newuser._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
     console.log(`new user created successfully as ${newuser}`);
@@ -31,20 +31,20 @@ const register = expressasynhandler(async(req,res)=>{
 });
 
 const login = expressasynhandler(async(req,res)=>{
-    const {email,password} = req.body();
+    const {email,password} = req.body;
     const check_user = await user.findOne({email:email});
     if(!check_user) {
         console.log("email does not exits!");
-        res.status(400).json({message: "User does not exits"});
+        return res.status(400).json({message: "User does not exits"});
     }
-    const check_pass = await bcrypt.compare(password,check_user.pass);
+    const check_pass = await bcrypt.compare(password,check_user.password);
     if(!check_pass) {
         console.log("invalid password!");
-        res.status(400).json({message: "Invalid password"});
+        return res.status(400).json({message: "Invalid password"});
     }
     const token = jwt.sign({id:check_user._id}, process.env.JWT_SECRET, {expiresIn: '1d'});
     console.log(`user logged in successfully as ${check_user}`);
-    res.send(200).json({
+    return res.status(200).json({
         message: 'user logged in successfully',
         token,
         user:{  
@@ -58,7 +58,7 @@ const login = expressasynhandler(async(req,res)=>{
 const me = expressasynhandler(async(req,res)=>{
     const user_id = req.user.id;
     const check_user = await user.findById(user_id);
-    res.status(200).json({
+    return res.status(200).json({
         user: {
             name : check_user.name,
             email : check_user.email,
