@@ -10,8 +10,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           <div className="space-y-6">
-            <div className="flex items-center">
+            <div className="flex items-center gap-3">
               <img src={darkLogo} alt="AK Agencies Logo" className="h-14 w-auto object-contain brightness-110 scale-110" />
+              <span className="font-extrabold text-xl tracking-tight uppercase">AK Agencies</span>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed font-medium">
               Your dependable wholesale distribution partner for premium commercial kitchen equipment across Tamil Nadu and strictly adhering to Indian food safety hardware standards.

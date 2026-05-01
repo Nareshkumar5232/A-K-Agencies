@@ -36,12 +36,15 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex items-center group">
+          <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
             <img 
               src={theme === 'dark' ? darkLogo : lightLogo} 
               alt="AK Agencies Logo" 
               className={`h-12 w-auto object-contain group-hover:scale-105 transition-transform ${theme === 'dark' ? 'scale-110' : ''}`} 
             />
+            <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white uppercase mt-0.5">
+              AK Agencies
+            </span>
           </Link>
 
           {/* Desktop Menu */}
