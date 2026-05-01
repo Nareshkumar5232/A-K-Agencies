@@ -5,6 +5,7 @@ import { Menu, X, Utensils, ShoppingCart, Sun, Moon, LogOut, User as UserIcon } 
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
+import logo from '../logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,13 +35,8 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           
           {/* Logo */}
-          <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-            <div className="p-2.5 bg-brand rounded-xl text-white shadow-lg shadow-brand/20 group-hover:scale-105 transition-transform">
-              <Utensils size={22} />
-            </div>
-            <span className="font-extrabold text-xl tracking-tight text-gray-900 dark:text-white uppercase mt-0.5">
-              AK Agencies
-            </span>
+          <Link to="/" className="flex-shrink-0 flex items-center group">
+            <img src={logo} alt="AK Agencies Logo" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform" />
           </Link>
 
           {/* Desktop Menu */}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Utensils } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import logo from '../logo.png';
 
 const Footer = () => {
   return (
@@ -9,11 +10,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           
           <div className="space-y-6">
-            <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-brand rounded-xl">
-                <Utensils size={22} className="text-white" />
-              </div>
-              <span className="font-extrabold text-xl tracking-tight uppercase">AK Agencies</span>
+            <div className="flex items-center">
+              <img src={logo} alt="AK Agencies Logo" className="h-14 w-auto object-contain brightness-110" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed font-medium">
               Your dependable wholesale distribution partner for premium commercial kitchen equipment across Tamil Nadu and strictly adhering to Indian food safety hardware standards.
