@@ -5,7 +5,8 @@ import { Menu, X, Utensils, ShoppingCart, Sun, Moon, LogOut, User as UserIcon } 
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../hooks/useTheme';
-import logo from '../logo.png';
+import darkLogo from '../logo.png';
+import lightLogo from '../lightlogo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +37,11 @@ const Navbar = () => {
           
           {/* Logo */}
           <Link to="/" className="flex-shrink-0 flex items-center group">
-            <img src={logo} alt="AK Agencies Logo" className="h-12 w-auto object-contain group-hover:scale-105 transition-transform" />
+            <img 
+              src={theme === 'dark' ? darkLogo : lightLogo} 
+              alt="AK Agencies Logo" 
+              className={`h-12 w-auto object-contain group-hover:scale-105 transition-transform ${theme === 'dark' ? 'scale-110' : ''}`} 
+            />
           </Link>
 
           {/* Desktop Menu */}

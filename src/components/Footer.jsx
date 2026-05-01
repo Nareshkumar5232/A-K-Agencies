@@ -1,7 +1,7 @@
 import React from 'react';
 import { Utensils } from 'lucide-react';
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import logo from '../logo.png';
+import darkLogo from '../logo.png';
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
           
           <div className="space-y-6">
             <div className="flex items-center">
-              <img src={logo} alt="AK Agencies Logo" className="h-14 w-auto object-contain brightness-110" />
+              <img src={darkLogo} alt="AK Agencies Logo" className="h-14 w-auto object-contain brightness-110 scale-110" />
             </div>
             <p className="text-gray-400 text-sm leading-relaxed font-medium">
               Your dependable wholesale distribution partner for premium commercial kitchen equipment across Tamil Nadu and strictly adhering to Indian food safety hardware standards.
