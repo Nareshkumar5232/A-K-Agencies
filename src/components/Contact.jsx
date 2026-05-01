@@ -193,7 +193,7 @@ const Contact = () => {
                   <div>
                     <h4 className="font-bold text-gray-900 text-lg">Email Accounts</h4>
                     <p className="text-gray-600 mt-1.5 font-medium">
-                      <a href="mailto:akagenciescbm@gmail.com" className="hover:text-brand transition-colors">akagenciescbm@gmail.com</a>
+                      <a href="mailto:reach2akagencies@gmail.com" className="hover:text-brand transition-colors">reach2akagencies@gmail.com</a>
                     </p>
                   </div>
                 </div>
